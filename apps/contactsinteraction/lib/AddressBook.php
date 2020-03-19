@@ -42,6 +42,8 @@ use Sabre\DAVACL\IACL;
 
 class AddressBook extends ExternalAddressBook implements IACL, IShareable {
 
+	public const URI = 'recent';
+
 	use ACLTrait;
 
 	/** @var RecentContactMapper */
@@ -56,7 +58,7 @@ class AddressBook extends ExternalAddressBook implements IACL, IShareable {
 	public function __construct(RecentContactMapper $mapper,
 								IL10N $l10n,
 								string $principalUri) {
-		parent::__construct(Application::APP_ID, 'recent');
+		parent::__construct(Application::APP_ID, self::URI);
 
 		$this->mapper = $mapper;
 		$this->l10n = $l10n;
@@ -131,7 +133,6 @@ class AddressBook extends ExternalAddressBook implements IACL, IShareable {
 	 * @inheritDoc
 	 */
 	public function getLastModified() {
-		// TODO: Implement getLastModified() method.
 		throw new NotImplemented();
 	}
 

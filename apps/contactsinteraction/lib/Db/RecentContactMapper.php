@@ -93,7 +93,7 @@ class RecentContactMapper extends QBMapper {
 			$or->add($qb->expr()->eq('email', $qb->createNamedParameter($email)));
 		}
 		if ($cloudId !== null) {
-			$or->add($qb->expr()->eq('uid', $qb->createNamedParameter($cloudId)));
+			$or->add($qb->expr()->eq('federated_cloud_id', $qb->createNamedParameter($cloudId)));
 		}
 
 		$select = $qb

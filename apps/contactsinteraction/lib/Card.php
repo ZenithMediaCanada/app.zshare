@@ -131,6 +131,7 @@ class Card implements ICard, IACL {
 	 * @inheritDoc
 	 */
 	function getLastModified(): ?int {
-		throw new NotImplemented();
+		return $this->contact->getLastContact();
 	}
+
 }

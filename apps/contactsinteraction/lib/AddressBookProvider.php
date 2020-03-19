@@ -64,13 +64,17 @@ class AddressBookProvider implements IAddressBookProvider {
 	 * @inheritDoc
 	 */
 	public function hasAddressBookInAddressBookHome(string $principalUri, string $uri): bool {
-		return false;
+		return $uri === AddressBook::URI;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getAddressBookInAddressBookHome(string $principalUri, string $uri): ?ExternalAddressBook {
+		if ($uri === AddressBook::URI) {
+			return new AddressBook($this->mapper, $this->l10n, $principalUri);
+		}
+
 		return null;
 	}
 

@@ -27,9 +27,9 @@ namespace OCA\ContactsInteraction\BackgroundJob;
 
 use OCA\ContactsInteraction\Db\RecentContactMapper;
 use OCP\AppFramework\Utility\ITimeFactory;
-use OCP\BackgroundJob\Job;
+use OCP\BackgroundJob\TimedJob;
 
-class CleanupJob extends Job {
+class CleanupJob extends TimedJob {
 
 	/** @var RecentContactMapper */
 	private $mapper;
@@ -37,6 +37,9 @@ class CleanupJob extends Job {
 	public function __construct(ITimeFactory $time,
 								RecentContactMapper $mapper) {
 		parent::__construct($time);
+
+		$this->setInterval(12 * 60 * 60);
+
 		$this->mapper = $mapper;
 	}
 

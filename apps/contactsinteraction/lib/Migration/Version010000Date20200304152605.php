@@ -74,6 +74,18 @@ class Version010000Date20200304152605 extends SimpleMigrationStep {
 			'length' => 4,
 		]);
 		$table->setPrimaryKey(['id']);
+		// To find all recent entries
+		$table->addIndex(['actor_uid'], RecentContactMapper::TABLE_NAME . '_actor_uid');
+		// To find a specific entry
+		$table->addIndex(['id', 'actor_uid'], RecentContactMapper::TABLE_NAME . '_id_uid');
+		// To find all recent entries with a given UID
+		$table->addIndex(['uid'], RecentContactMapper::TABLE_NAME . '_uid');
+		// To find all recent entries with a given email address
+		$table->addIndex(['email'], RecentContactMapper::TABLE_NAME . '_email');
+		// To find all recent entries with a give federated cloud id
+		$table->addIndex(['federated_cloud_id'], RecentContactMapper::TABLE_NAME . '_fed_id');
+		// For the cleanup
+		$table->addIndex(['last_contact'], RecentContactMapper::TABLE_NAME . '_last_contact');
 
 		return $schema;
 	}
