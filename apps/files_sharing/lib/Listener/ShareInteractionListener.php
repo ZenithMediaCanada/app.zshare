@@ -68,7 +68,7 @@ class ShareInteractionListener implements IEventListener {
 
 		$share = $event->getShare();
 		if (!in_array($share->getShareType(), self::SUPPORTED_SHARE_TYPES, true)) {
-			$this->logger->warning('Share type does not allow to emit interaction event');
+			$this->logger->debug('Share type does not allow to emit interaction event');
 			return;
 		}
 		$actor = $this->userManager->get($share->getSharedBy());
